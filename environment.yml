@@ -12,9 +12,3 @@ dependencies:
   - psutil
   - matplotlib
   - torchvision
-  # also, krakenex, install with pip (not in conda)
-  # also coremltools, install with pip (ancient version only in conda)
-  # also, plotext, install with pip (not in conda)
-
-# after updates:
-# conda env update --file environment.yml
