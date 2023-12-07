@@ -1,6 +1,7 @@
 # inference.py
 import os
 import torch
+import matplotlib.pyplot as plt
 import torch.nn.functional as F
 from torchvision import transforms
 from PIL import Image
@@ -32,6 +33,14 @@ def predict(model, image_tensor):
         return predicted.item()
 
 
+def show_preprocessed_image(image_tensor, title_text):
+    plt.figure(figsize=(5, 5))
+    plt.imshow(image_tensor.squeeze(), cmap='gray')  # Remove channel dimension and show in grayscale
+    if title_text != '':
+        plt.title(title_text, fontsize=15)
+    plt.show()
+
+
 # Load the model
 model_path = './models/mnist_model.pth'
 model = load_model(model_path)
@@ -40,6 +49,7 @@ model = load_model(model_path)
 image_path = '/Users/haslo/Desktop/input.png'
 image_tensor = preprocess_image(image_path)
 
-# Predict and print the result
+# Predict and display the result
 predicted_digit = predict(model, image_tensor)
 print(f'Predicted Digit: {predicted_digit}')
+show_preprocessed_image(image_tensor, f'Predicted Digit: {predicted_digit}')
